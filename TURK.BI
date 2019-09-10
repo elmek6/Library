@@ -1,0 +1,3 @@
+DECLARE SUB TurkFont (BYVAL kar%)
+DECLARE FUNCTION EgaVgaMi% ()
+

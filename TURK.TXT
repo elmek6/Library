@@ -1,0 +1,207 @@
+ ⁄ƒƒƒƒƒƒƒƒƒƒƒƒƒƒƒƒƒƒƒƒƒƒƒƒƒƒƒƒƒƒƒƒƒƒƒƒƒƒƒƒƒƒƒƒƒƒƒƒƒƒƒƒƒƒƒƒƒƒƒƒƒƒƒƒƒƒƒƒƒƒƒƒƒƒø
+ ≥⁄ƒƒƒƒƒƒƒƒƒƒƒƒƒƒƒƒƒƒƒƒƒƒƒƒƒƒƒƒƒƒƒƒƒƒƒƒƒƒƒƒƒƒƒƒƒƒƒƒƒƒƒƒƒƒƒƒƒƒƒƒƒƒƒƒƒƒƒƒƒƒƒƒø≥
+ ≥≥                                                                        ≥≥
+ ≥≥      ASSEMBLY ˙ C ˙ PASCLA ˙ BASIC Programcçlarç òáin TÅrkáe Font      ≥≥
+ ≥≥                                                                        ≥≥
+ ≥¿ƒƒƒƒƒƒƒƒƒƒƒƒƒƒƒƒƒƒƒƒƒƒƒƒƒƒƒƒƒƒƒƒƒƒƒƒƒƒƒƒƒƒƒƒƒƒƒƒƒƒƒƒƒƒƒƒƒƒƒƒƒƒƒƒƒƒƒƒƒƒƒƒŸ≥
+ ≥                                                Recep Tezkol              ≥
+ ¿ƒƒƒƒƒƒƒƒƒƒƒƒƒƒƒƒƒƒƒƒƒƒƒƒƒƒƒƒƒƒƒƒƒƒƒƒƒƒƒƒƒƒƒƒƒƒƒƒƒƒƒƒƒƒƒƒƒƒƒƒƒƒƒƒƒƒƒƒƒƒƒƒƒƒŸ
+
+
+
+
+> Bir programcç, kullançma sundußu ÅrÅnÅnÅn her ortamda sorunsuz iü gîrmesini
+  saßlamak zorundadçr. TÅrkiye'de yaüçyorsak ve hedefledißimiz kullançcç
+  kitlesi TÅrkler ise, ÅrÅnÅmÅzde TÅrkáe karakterler kullanmamçz gerekecektir.
+  Yoksa karüçmçza hiá hoü olmayan sonuálar áçkabilir. "òßne" yerine "Igne",
+  "Sçkçütçr" yerine "Sikistir", "ûu" yerine "Su" gibi..
+
+  Programlama yaptçßçmçz bu PC'ler îyle deßiüik konfigÅrasyonlara sahip
+  oluyorlar ki, her bilgisayarçn TÅrkáe karakterlere destek vermesi
+  beklenemez. Kullançcçdan programç áalçütçrmadan înce bir TSR yÅklemesini
+  istemek ise "bu programç kullanmasançz iyi olur" anlamçna gelebilir.
+
+˛ Yakçn bir zaman înce TÅrkáe bir programçn kurulumunda bulunmuütum. Program
+  CONFIG.SYS dosyasçna bazç eklemeler yaparak DOS'un saßladçßç TÅrkáe fontlarç
+  kullanmak istiyordu. Evet bu da bir áîzÅm ama ya kullançcç bu dosyalarç
+  kahpe bir DEL'e kurban etmediyse. Bu olmasa bile DOS'u geliütirenlerin TÅrk
+  programcçlar kutu karakterlerini kullanmaz gibi bir aaacayip dÅüÅnce ile
+  bunlarçn bazçlarçnçn yerine garip üekiller yerleütirmeleri iüi iyice
+  karçütçrçyor.
+
+  Gelin bu probleme bir áîzÅm bulalçm!..
+
+  Biráok EGA/VGA ekran kartçnçn karakter setlerinde ô ve ö dçüçnda
+  ¶,ß,ò,ç,Ä,á,û,ü karakterleri bulunmuyor. Ekran kartçmçzda bulunmayan bu
+  karakterleri tançmlamak mÅmkÅn oldußuna gîre kÅáÅk bir rutin hazçrlayarak
+  tÅm bu dertlerden kurtulabiliriz. Karakter îláÅlerini deßiütirmez isek EGA
+  ekran kartçna sahip bir bilgisayarda karakterler 8x14 bit'ten oluüur.
+  VGA'da bu 8x16 (hatta 9x16) olmaktadçr.
+
+              ⁄ƒƒ¬ƒƒƒƒƒƒƒƒƒƒƒƒ˙ƒƒƒƒƒƒƒƒƒƒƒƒƒƒƒø
+              ≥  ≥   EGA      ˙      VGA      ≥
+              √ƒƒ≈ƒƒƒƒƒƒƒƒƒƒƒƒ˙ƒƒƒƒƒƒƒƒƒƒƒƒƒƒƒ¥
+              √ƒƒ¥-12345678-  ˙   -12345678-9-≥
+              ≥ 1≥ 00000000   ˙    00000000 0 ≥
+              ≥ 2≥ 00011000   ˙    00000000 0 ≥
+              ≥ 3≥ 00111100   ˙    00011000 0 ≥
+              ≥ 4≥ 01100110   ˙    00111100 0 ≥
+              ≥ 5≥ 11000110   ˙    01100110 0 ≥
+              ≥ 6≥ 11000110   ˙    11000110 0 ≥
+              ≥ 7≥ 11000110   ˙    11000110 0 ≥
+              ≥ 8≥ 11111110   ˙    11000110 0 ≥
+              ≥ 9≥ 11000110   ˙    11111110 0 ≥
+              ≥10≥ 11000110   ˙    11000110 0 ≥
+              ≥11≥ 11000110   ˙    11000110 0 ≥
+              ≥12≥ 00000000   ˙    11000110 0 ≥
+              ≥13≥ 00000000   ˙    11000110 0 ≥
+              ≥14≥ 00000000   ˙    00000000 0 ≥
+              ≥15≥ --------   ˙    00000000 0 ≥
+              ≥16≥ --------   ˙    00000000 0 ≥
+              ¿ƒƒ¡ƒƒƒƒƒƒƒƒƒƒƒƒ˙ƒƒƒƒƒƒƒƒƒƒƒƒƒƒƒŸ
+
+
+
+  Ekran Kartçnçn Tipi Ne?
+ƒƒƒƒƒƒƒƒƒƒƒƒƒƒƒƒƒƒƒƒƒƒƒƒƒ
+  TÅrkáe karakterlerimizi font tablosuna yerleütirmeden înce kullançlan ekran
+  kartçnçn tipini ve karakter boyunu bilmemiz gerekecektir. Buna dikkat
+  edilmezse TÅrkáe karakter yerine japon karakterleri ile karüçlaüabiliriz.
+  (Biraz fazla attçm galiba?!..)
+
+  VGA ekran kartçnçn tespiti iáin interrupt 10h'un 1Ah fonksiyonundan
+  yararlanacaßçz. VGA ekran kartç bulunan bir sistemde Interrupt 10h, 1Ah
+  fonksiyonu ile áaßçrçldçßçnda AL yazmacçna, AH yazmacçnda bulunan fonksiyon
+  numarasçnç aktarçr. Dißer ekran kartlarç iáin 1Ah fonksiyonu anlamsçz
+  olacaßçndan fonksiyon numarasçnç AL yazmacçna aktarmayacaktçr.
+
+                 Mov    ax,1A00h
+                 int    10h
+                 cmp    al,1Ah
+                 jz     VgaKartiVar
+
+  Bu fonksiyon áaßrçsç sonucu olumsuz ise kartçn EGA olup olmadçßçna bakarçz.
+  Bunun iáin interrupt 10h'nun 12h fonksiyon, 10h alt fonksiyonunu
+  kullanacaßçz. 12h fonksiyon áaßçrçldçßçnda ekran kartç EGA ise BL yazmacçnçn
+  iáerißine video belleßini belirten bir deßer aktarçr. Eßer ekran kartç bir
+  EGA/VGA kart deßilse, BL yazmacçnçn iáerißinde bir deßiüiklik olmayacaktçr.
+
+        0 ˙  64 Kbyte
+        1 ˙ 128 Kbyte
+        2 ˙ 192 Kbyte
+        3 ˙ 256 Kbyte
+
+  Fonksiyonun bu îzellißinden yararlanarak ekran kartçnçn EGA olup, olmadçßç
+  îßrenilebilir.
+
+                Mov     ah,12h
+                mov     bl,10h
+                cmp     bl,10
+                jnz     EgaKartiVar
+
+˙ Ekran kartçnç test edebildißimize gîre artçk bunlarç bir fonksiyon haline
+  getirebiliriz. Ben bu fonksiyonu, Assembly, C, Pascal programlarda
+  EGA_VGA_MI; BASIC programçnda EgaVgaMi olarak adlandçrdçm. EGA_VGA_MI
+  fonksiyonu, baüka programlarda da kullançlabilir. Fonksiyonumuz BASIC'te ve
+  Assembly'de integer, C ve Pascal'da byte tipinde deßer dîndÅrÅr.
+  Fonksiyondan dînen deßerler;
+
+                 0 = EGA veya VGA kart bulunamadç.
+                16 = VGA kart bulundu.
+                14 = EGA kart bulundu.
+
+˙ Ekran kart tipini tespit ettikten sonra TÅrkáe karakterlerimizi
+  yÅkleyebiliriz. ônce VGA ve EGA ekran kartlarç iáin ayrç ayrç fontlar
+  hazçrlamamçz gereklidir.
+
+
+                           VGA Karakter Bit Map
+  ⁄ƒƒƒƒƒƒƒƒ¬ƒƒƒƒƒƒƒƒ¬ƒƒƒƒƒƒƒƒ¬ƒƒƒƒƒƒƒƒ¬ƒƒƒƒƒƒƒƒ¬ƒƒƒƒƒƒƒƒ¬ƒƒƒƒƒƒƒƒ¬ƒƒƒƒƒƒƒƒø
+  ≥00000000≥00000000≥01100110≥00000000≥00000000≥00000000≥00000000≥00000000≥
+  ≥00000000≥00000000≥00111100≥00000000≥00000000≥00000000≥00000000≥00000000≥
+  ≥00111100≥00000000≥00000000≥01100110≥00000000≥00000000≥00000000≥00000000≥
+  ≥01100110≥00000000≥00111100≥00111100≥00011000≥00000000≥01111100≥00000000≥
+  ≥11000010≥00000000≥01100110≥00000000≥00011000≥00000000≥11000110≥00000000≥
+  ≥11000000≥01111100≥11000000≥00111011≥00000000≥00111000≥11000110≥01111100≥
+  ≥11000000≥11000110≥11000000≥01100110≥00111100≥00011000≥01100000≥11000110≥
+  ≥11000000≥11000000≥11000000≥01100110≥00011000≥00011000≥00111000≥01100000≥
+  ≥11000000≥11000000≥11011110≥01100110≥00011000≥00011000≥00001100≥00111000≥
+  ≥11000010≥11000000≥11000110≥01100110≥00011000≥00011000≥11000110≥00001100≥
+  ≥01100110≥11000110≥01100110≥00111110≥00011000≥00011000≥11000110≥11000110≥
+  ≥00111100≥01111100≥00111010≥00000110≥00111100≥00111100≥01111110≥01111100≥
+  ≥00011000≥00011000≥00000000≥01100110≥00000000≥00000000≥00011000≥00011000≥
+  ≥00111000≥00111000≥00000000≥00111100≥00000000≥00000000≥00110000≥00111000≥
+  ≥00000000≥00000000≥00000000≥00000000≥00000000≥00000000≥00000000≥00000000≥
+  ≥00000000≥00000000≥00000000≥00000000≥00000000≥00000000≥00000000≥00000000≥
+  ¿ƒƒƒƒƒƒƒƒ¡ƒƒƒƒƒƒƒƒ¡ƒƒƒƒƒƒƒƒ¡ƒƒƒƒƒƒƒƒ¡ƒƒƒƒƒƒƒƒ¡ƒƒƒƒƒƒƒƒ¡ƒƒƒƒƒƒƒƒ¡ƒƒƒƒƒƒƒƒŸ
+
+                          EGA Karakter Bit Map
+  ⁄ƒƒƒƒƒƒƒƒ¬ƒƒƒƒƒƒƒƒ¬ƒƒƒƒƒƒƒƒ¬ƒƒƒƒƒƒƒƒ¬ƒƒƒƒƒƒƒƒ¬ƒƒƒƒƒƒƒƒ¬ƒƒƒƒƒƒƒƒ¬ƒƒƒƒƒƒƒƒø
+  ≥00000000≥00000000≥00000000≥00000000≥00000000≥00000000≥00000000≥00000000≥
+  ≥00000000≥00000000≥00111100≥00000000≥00000000≥00000000≥00000000≥00000000≥
+  ≥00111100≥00000000≥00000000≥00000000≥00000000≥00000000≥00000000≥00000000≥
+  ≥01100110≥00000000≥00111100≥00111100≥00011000≥00000000≥01111100≥00000000≥
+  ≥11000010≥00000000≥01100110≥00000000≥00011000≥00000000≥11000110≥00000000≥
+  ≥11000000≥01111100≥11000000≥00111011≥00000000≥00111000≥11000110≥01111100≥
+  ≥11000000≥11000110≥11000000≥01100110≥00111100≥00011000≥01100000≥11000110≥
+  ≥11000000≥11000000≥11011110≥01100110≥00011000≥00011000≥00111000≥01100000≥
+  ≥11000010≥11000000≥11000110≥01100110≥00011000≥00011000≥00001100≥00011000≥
+  ≥01100110≥11000110≥01100110≥00111110≥00011000≥00011000≥11000110≥00001100≥
+  ≥00111100≥01111100≥00111100≥00000110≥00111100≥00111100≥11000110≥11000110≥
+  ≥00011000≥00011000≥00000000≥01100110≥00000000≥00000000≥01111110≥01111100≥
+  ≥00111000≥00111000≥00000000≥00111100≥00000000≥00000000≥00011000≥00011000≥
+  ≥00000000≥00000000≥00000000≥00000000≥00000000≥00000000≥00000000≥00000000≥
+  ¿ƒƒƒƒƒƒƒƒ¡ƒƒƒƒƒƒƒƒ¡ƒƒƒƒƒƒƒƒ¡ƒƒƒƒƒƒƒƒ¡ƒƒƒƒƒƒƒƒ¡ƒƒƒƒƒƒƒƒ¡ƒƒƒƒƒƒƒƒ¡ƒƒƒƒƒƒƒƒŸ
+
+
+˙ TÅrkáe karakterler iáin bit haritalarçnç hazçrladçktan sonra bunlarç
+  yÅklemek iáin font tablosunu A000:0000 adresine áaßçralçm.
+
+           out 3c4h,100h   Ega sequencer index - reset sequencer
+           out 3c4h,402h       map mask register
+           out 3c4h,704h       memory mode select
+           out 3c4h,300h       reset sequencer
+           out 3ceh,204h   Ega graphic index - read map select
+           out 3ceh,5          mode
+           out 3ceh,406h       mode/chain/mem map
+
+˙ Deßiütirilecek karakterin tablodaki yerini, karakterin ASCII kodunu
+  32 ile áarparak elde ederiz ve bu karakter iáin hazçrladçßçmçz bit
+  haritasçnç buraya kopyalarçz. TÅrkáe katakterler yÅkleyeceßimiz ASCII
+  kodlar;
+
+                        ascii 158  -> û
+                        ascii 159  -> ü
+                        ascii 128  -> Ä
+                        ascii 135  -> á
+                        ascii 166  -> ¶
+                        ascii 167  -> ß
+                        ascii 152  -> ò
+                        ascii 141  -> ç 'dir.
+
+
+˙ Daha sonra deßiütirilen font tablosunu aktifleütirmek gerekir.
+
+           out 3c4h,100h    EGA sequencer index - reset sequencer
+           out 3c4h,302h        map mask register
+           out 3c4h,304h        memory mode select
+           out 3c4h,300h        reset sequencer
+           out 3ceh,4       EGA graphic index - read map select
+           out 3ceh,1005h       mode
+           out 3ceh,e06h        mode/chain/mem map
+
+  TÅrkáe font Assembly, C, Pascal ve Basic dilleri iáin hazçrlanmçütçr. Basic
+  iáin hazçrlanan rutinler Assembly'de yazçldçßç iáin programçn kolay
+  kullançlabilmesi aáçsçndan library ve quicklibrary haline getirilmelidir.
+
+  Library iáin;
+
+           TASM  Turk.asm
+           LIB.EXE  Turk.lib + Turk.obj
+
+  QuickLibrary iáin;
+
+           LINK.EXE /Q Turk.obj,Turk.qlb,,BQLB45.LIB;
+
+  daha sonra BASIC QB /L Turk.qlb üeklinde yÅklenerek program kullançlabilir.
+ 
